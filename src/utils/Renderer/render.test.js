@@ -73,4 +73,5 @@ describe('render', function () {
     expect(dom.firstChild.childNodes[0].tagName).toEqual('P')
     expect(dom.firstChild.childNodes[1].tagName).toEqual('A')
   })
+
 })

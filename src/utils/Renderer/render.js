@@ -9,7 +9,8 @@ const setInnerText = function (domNode, text) {
 
 const propsMap = {
   className: 'class',
-  id: 'id'
+  id: 'id',
+  src: 'src'
 }
 
 const addProps = function (props, domElement) {
@@ -34,7 +35,10 @@ const renderChildren = function (element, children) {
     setInnerText(domElement, children)
   } else {
     children.forEach(child => {
-      domElement.appendChild(renderChildren(child, child.props.children))
+      const childDomElement = renderChildren(child, child.props.children)
+      if (childDomElement) {
+        domElement.appendChild(childDomElement)
+      }
     });
   }
   return domElement
@@ -47,7 +51,11 @@ const renderChildren = function (element, children) {
  */
 const render = function (mountNode, element) {
 
-  if (!mountNode || !(mountNode instanceof window.HTMLElement)) {
+  // if (!mountNode || !(mountNode instanceof window.HTMLElement)) {
+  //   return null
+  // }
+
+  if (!mountNode) {
     return null
   }
 
@@ -59,7 +67,7 @@ const render = function (mountNode, element) {
   if (element.props.children) {
     domElement = renderChildren(element, element.props.children)
   }
-
+  
   if (domElement) {
     mountNode.appendChild(domElement)
   }
