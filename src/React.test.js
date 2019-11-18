@@ -1,7 +1,7 @@
 import vm from 'vm'
 import { JSDOM } from 'jsdom'
 import { transformAsync } from '@babel/core'
-import React from './react'
+import React from './React'
 
 describe('React public API test', function () {
 
@@ -10,7 +10,7 @@ describe('React public API test', function () {
     'render': 'function'
   }
 
-  xit('should have the public API methods', function () {
+  it('should have the public API methods', function () {
 
     Object.keys(PUBLIC_API).forEach((method) => {
       expect(React.hasOwnProperty(method)).toBe(true)
@@ -18,7 +18,7 @@ describe('React public API test', function () {
     });
   })
 
-  it('should render JSX to dom tree', async function () {
+  xit('should render JSX to dom tree', async function () {
     const appCode = `
       const App = 
       <div className="app">
